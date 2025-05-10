@@ -3,8 +3,8 @@ import '@/shared/styles/globals.css'
 import { pretendard } from '@/shared/styles/fonts/pretendard'
 
 export const metadata: Metadata = {
-  title: 'DND-PASSBOARD',
-  description: 'DND-PASSBOARD'
+  title: 'DND - 지원결과조회',
+  description: 'DND 지원결과조회 페이지입니다.'
 }
 
 export default function RootLayout({

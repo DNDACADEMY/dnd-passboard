@@ -15,7 +15,8 @@ export const vars = createGlobalTheme(':root', {
     errorDark: '#2b2025',
     info: '#00d3f2',
     infoDark: '#112931',
-    white: '#fff'
+    white: '#fff',
+    black: '#000'
   },
   fontSize: {
     h1: '56px',

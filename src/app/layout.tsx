@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
-import '@/styles/globals.css'
-import { pretendard } from '@/styles/fonts/pretendard'
+import '@/shared/styles/globals.css'
+import { pretendard } from '@/shared/styles/fonts/pretendard'
 
 export const metadata: Metadata = {
   title: 'DND-PASSBOARD',
   description: 'DND-PASSBOARD'
 }
 
-export default function Layout({
+export default function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode
@@ -16,6 +16,20 @@ export default function Layout({
     <html
       className={pretendard.variable}
       lang='ko'>
+      <head>
+        <link
+          rel='icon'
+          type='image/png'
+          sizes='32x32'
+          href='/assets/favicon-32x32.png'
+        />
+        <link
+          rel='icon'
+          type='image/png'
+          sizes='16x16'
+          href='/assets/favicon-16x16.png'
+        />
+      </head>
       <body>{children}</body>
     </html>
   )

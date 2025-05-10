@@ -19,8 +19,6 @@
       }
     ],
     "paths": {
-      "@/utils/*": ["./src/features/common/utils/*"],
-      "@/common/*": ["./src/features/common/*"],
       "@/*": ["./src/*"]
     }
   },

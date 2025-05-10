@@ -1,7 +1,7 @@
 import type { Preview } from '@storybook/react'
-import '../src/styles/globals.css'
-import '../src/styles/reset.css'
-import {pretendard} from '../src/styles/fonts/pretendard'
+import '../src/shared/styles/globals.css'
+import '../src/shared/styles/reset.css'
+import {pretendard} from '../src/shared/styles/fonts/pretendard'
 
 const preview: Preview = {
   parameters: {

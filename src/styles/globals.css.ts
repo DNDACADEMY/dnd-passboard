@@ -16,7 +16,7 @@ globalStyle('body', {
   '@layer': {
     [layers.utilities]: {
       minHeight: '100vh',
-      fontFamily: vars.fontFamily.body,
+      fontFamily: vars.fontFamily.default,
       WebkitFontSmoothing: 'antialiased',
       MozOsxFontSmoothing: 'grayscale'
     }

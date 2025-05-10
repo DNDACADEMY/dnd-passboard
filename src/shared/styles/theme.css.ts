@@ -31,10 +31,33 @@ export const vars = createGlobalTheme(':root', {
     caption1: '12px',
     caption2: '10px'
   },
-  lineHeight: {},
-  width: {},
-  height: {},
-  zIndex: {},
+  spacing: {
+    '000': '0px',
+    '010': '1px',
+    '020': '2px',
+    '025': '4px',
+    '050': '8px',
+    '060': '10px',
+    '075': '12px',
+    '100': '16px',
+    '125': '20px',
+    '150': '24px',
+    '200': '32px',
+    '250': '40px',
+    '300': '48px',
+    '350': '56px',
+    '450': '72px'
+  },
+  borderRadius: {
+    none: '0px',
+    xsmall: '1px',
+    small: '2px',
+    medium: '4px',
+    large: '8px',
+    xlarge: '12px',
+    xxlarge: '16px',
+    max: '1000px'
+  },
   fontFamily: {
     default:
       "Pretendard, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif"

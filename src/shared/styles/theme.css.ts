@@ -16,7 +16,22 @@ export const vars = createGlobalTheme(':root', {
     info: '#00d3f2',
     infoDark: '#112931',
     white: '#fff',
-    black: '#000'
+    black: '#000',
+    cyan050: '#DEF7FD',
+    cyan100: '#ACECFA',
+    cyan200: '#70DFF7',
+    cyan300: '#00D3F2',
+    cyan400: '#00CBEE',
+    cyan500: '#00BEE8',
+    cyan600: '#00AED4',
+    cyan700: '#0099B8',
+    cyan800: '#00859F',
+    cyan900: '#006371',
+    side400: '#FF6C61',
+    gray100: '#EDEEF0',
+    gray300: '#D3D4D6',
+    mono000: '#FFFFFF',
+    mono900: '#000000'
   },
   fontSize: {
     h1: '56px',

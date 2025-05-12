@@ -1,7 +1,8 @@
-import { type ComponentProps, forwardRef, type ReactNode } from 'react'
+import { type ComponentProps, forwardRef, type ReactNode, useId } from 'react'
 import { Textfield } from '../Textfield'
 import { Flex } from '../Flex'
 import { BottomText, Label } from './compound'
+import { InputfieldContextProvider } from './context'
 
 export type InputfieldProps = {
   topAddon?: ReactNode
@@ -10,20 +11,25 @@ export type InputfieldProps = {
 
 const InputfieldComponent = forwardRef<HTMLInputElement, InputfieldProps>(
   ({ placeholder, value, topAddon, bottomAddon, ...restProps }, ref) => {
+    const id = useId()
+
     return (
-      <Flex
-        direction='column'
-        gap={4}>
-        {topAddon}
-        <Textfield
-          size='large'
-          placeholder={placeholder}
-          value={value}
-          ref={ref}
-          {...restProps}
-        />
-        {bottomAddon}
-      </Flex>
+      <InputfieldContextProvider id={id}>
+        <Flex
+          direction='column'
+          gap={4}>
+          {topAddon}
+          <Textfield
+            id={id}
+            size='large'
+            placeholder={placeholder}
+            value={value}
+            ref={ref}
+            {...restProps}
+          />
+          {bottomAddon}
+        </Flex>
+      </InputfieldContextProvider>
     )
   }
 )

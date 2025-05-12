@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react'
 import * as styles from '../style.css'
+import { useInputfieldContext } from '../context'
 
 export type LabelProps = {
   children: ReactNode
@@ -7,10 +8,14 @@ export type LabelProps = {
 }
 
 export const Label = ({ children, required = false }: LabelProps) => {
+  const { id } = useInputfieldContext('Inputfield')
+
   return (
-    <div className={styles.labelStyle}>
+    <label
+      htmlFor={id}
+      className={styles.labelStyle}>
       {children}
       {required && <span className={styles.requiredStyle}>*</span>}
-    </div>
+    </label>
   )
 }

@@ -8,7 +8,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import * as styles from './style.css'
 import { SwitchCase } from '@/shared/components/SwichCase'
-import { PassStatusForm } from './components/pass-status-form/PassStatusForm'
+import { StatusContainer } from './components/status-container/StatusContainer'
+
 type Props = {
   recruitingEndDate: string | Date
 }
@@ -51,7 +52,7 @@ export function PassboardContainer({ recruitingEndDate }: Props) {
                 recruitingEndDate={recruitingEndDate}
               />
             ),
-            false: <PassStatusForm />
+            false: <StatusContainer />
           }}
           defaultComponent={null}
         />

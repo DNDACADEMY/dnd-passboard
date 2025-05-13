@@ -1,7 +1,7 @@
 type SwitchCaseValue = string | number | symbol | boolean
 
 export type SwitchCaseProps<T extends SwitchCaseValue> = {
-  value: T
+  value: T | undefined
   cases: Record<string, React.ReactNode>
   defaultComponent?: React.ReactNode
 }

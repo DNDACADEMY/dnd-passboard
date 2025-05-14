@@ -5,7 +5,6 @@ import { type ReactNode } from 'react'
 import { CARDINAL_NUMBER } from '@/shared/constants'
 import * as styles from '../style.css'
 import { motion } from 'framer-motion'
-
 type ResultCardProps = {
   status: UserStatus
   name: string

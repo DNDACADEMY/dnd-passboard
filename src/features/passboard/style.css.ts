@@ -1,19 +1,8 @@
 import { vars } from '@/shared/styles/theme.css'
 import { style } from '@vanilla-extract/css'
-import { mediaQuery } from '@/shared/constants/mediaQuery'
 export const container = style({
   marginTop: '90px',
-  width: '100%',
-
-  '@media': {
-    [mediaQuery.desktop]: {
-      marginTop: '0px',
-      position: 'absolute',
-      left: '50%',
-      top: '50%',
-      transform: 'translate(-50%, -60%)'
-    }
-  }
+  width: '100%'
 })
 
 export const titleBox = style({

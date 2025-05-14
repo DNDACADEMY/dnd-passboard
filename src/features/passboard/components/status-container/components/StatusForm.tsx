@@ -50,26 +50,17 @@ export const StatusForm = ({ isClosed }: { isClosed: boolean }) => {
         onAnimationComplete={() => {
           if (isClosed) setIsUnmounted(true)
         }}>
-        <Inputfield
+        <StatusField
+          label='이름'
           placeholder='이름을 입력해주세요.'
-          topAddon={<Inputfield.Label required>이름</Inputfield.Label>}
+          error={errors.name?.message}
           {...register('name')}
-          bottomAddon={
-            errors.name ? (
-              <Inputfield.BottomText state='error'>{errors.name?.message}</Inputfield.BottomText>
-            ) : undefined
-          }
-          error={!!errors.name?.message}
         />
-        <Inputfield
+        <StatusField
+          label='이메일'
           placeholder='이메일을 입력해주세요.'
-          topAddon={<Inputfield.Label required>이메일</Inputfield.Label>}
+          error={errors.email?.message}
           {...register('email')}
-          bottomAddon={
-            errors.email ? (
-              <Inputfield.BottomText state='error'>{errors.email?.message}</Inputfield.BottomText>
-            ) : undefined
-          }
         />
         <Button
           size='xlarge'
@@ -79,5 +70,23 @@ export const StatusForm = ({ isClosed }: { isClosed: boolean }) => {
         </Button>
       </motion.form>
     </Flex>
+  )
+}
+
+type StatusFieldProps = {
+  label: string
+  placeholder: string
+  error?: string
+}
+
+const StatusField = (props: StatusFieldProps) => {
+  const { label, placeholder, error, ...restProps } = props
+  return (
+    <Inputfield
+      placeholder={placeholder}
+      topAddon={<Inputfield.Label required>{label}</Inputfield.Label>}
+      bottomAddon={error && <Inputfield.BottomText state='error'>{error}</Inputfield.BottomText>}
+      {...restProps}
+    />
   )
 }

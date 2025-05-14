@@ -1,11 +1,12 @@
 import { vars } from '@/shared/styles/theme.css'
 import { style } from '@vanilla-extract/css'
-
+import { mediaQuery } from '@/shared/constants/mediaQuery'
 export const container = style({
   marginTop: '90px',
+  width: '100%',
 
   '@media': {
-    '(min-width: 768px)': {
+    [mediaQuery.desktop]: {
       marginTop: '0px',
       position: 'absolute',
       left: '50%',

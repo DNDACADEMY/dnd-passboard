@@ -2,7 +2,8 @@ import { vars } from '@/shared/styles/theme.css'
 import { style } from '@vanilla-extract/css'
 
 export const container = style({
-  width: '340px',
+  width: '100%',
+  maxWidth: '340px',
   padding: vars.spacing['150'],
   borderRadius: vars.spacing['125'],
   backgroundColor: vars.colors.white,

@@ -2,7 +2,17 @@ import { vars } from '@/shared/styles/theme.css'
 import { style } from '@vanilla-extract/css'
 
 export const container = style({
-  marginTop: '90px'
+  marginTop: '90px',
+
+  '@media': {
+    '(min-width: 768px)': {
+      marginTop: '0px',
+      position: 'absolute',
+      left: '50%',
+      top: '50%',
+      transform: 'translate(-50%, -60%)'
+    }
+  }
 })
 
 export const titleBox = style({

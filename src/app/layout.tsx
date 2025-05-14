@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import '@/shared/styles/globals.css'
 import { pretendard } from '@/shared/styles/fonts/pretendard'
+import { ChannelIo } from '@/shared/components/ChannelIo/ChannelIo'
 
 export const metadata: Metadata = {
   title: 'DND - 지원결과조회',
@@ -30,7 +31,11 @@ export default function RootLayout({
           href='/assets/favicon-16x16.png'
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <ChannelIo />
+        {children}
+        <div id='overlay' />
+      </body>
     </html>
   )
 }

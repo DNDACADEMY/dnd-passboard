@@ -41,13 +41,11 @@ export const StatusForm = ({ isClosed }: { isClosed: boolean }) => {
       asChild>
       <motion.form
         onSubmit={onSubmit}
-        initial={{ opacity: 0, height: 0, y: 100, marginBottom: 0, marginTop: 0 }}
+        initial={{ opacity: 0, height: 0, y: 100 }}
         animate={
-          isClosed
-            ? { opacity: 0, y: -120, height: 0, marginBottom: 0, marginTop: 0 }
-            : { opacity: 1, y: 0, height: 'auto', marginBottom: 32, marginTop: 0 }
+          isClosed ? { opacity: 0, y: -120, height: 0 } : { opacity: 1, y: 0, height: 'auto' }
         }
-        exit={{ opacity: 0, y: -120, height: 0, marginBottom: 0, marginTop: 0 }}
+        exit={{ opacity: 0, y: -120, height: 0 }}
         transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
         onAnimationComplete={() => {
           if (isClosed) setIsUnmounted(true)

@@ -1,6 +1,6 @@
 'use client'
 
-import { createCtxProvider } from '@/shared/components/createContextProvider'
+import { createCtxProvider } from '@/shared/utils/createContextProvider'
 import type { UserStatus } from '../../types/status'
 
 type StatusContainerContextValue = {

@@ -1,6 +1,6 @@
 'use client'
 
-import { createCtxProvider } from '@/shared/components/createContextProvider'
+import { createCtxProvider } from '@/shared/utils/createContextProvider'
 
 type InputfieldContextValue = {
   id: string

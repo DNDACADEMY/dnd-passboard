@@ -1,7 +1,8 @@
 import { forwardRef, useId, useState, type ComponentProps } from 'react'
 import { textfieldStyle } from './style.css'
 import { type TextfieldSize } from './type'
-
+import { keyboardEvents } from '@/shared/utils/keyboardEvents'
+import { composeHandler } from '@/shared/utils/composeHandler'
 export type TextfieldProps = {
   defaultValue?: string
   disabled?: boolean
@@ -10,7 +11,19 @@ export type TextfieldProps = {
 } & Omit<ComponentProps<'input'>, 'size'>
 
 export const Textfield = forwardRef<HTMLInputElement, TextfieldProps>(
-  ({ defaultValue, disabled = false, error = false, size = 'medium', ...restProps }, ref) => {
+  (
+    {
+      type = 'text',
+      defaultValue,
+      disabled = false,
+      error = false,
+      size = 'medium',
+      onChange: onChangeFromProps,
+      onKeyDown: onKeyDownFromProps,
+      ...restProps
+    },
+    ref
+  ) => {
     const id = useId()
     const [value, setValue] = useState(defaultValue)
 
@@ -18,14 +31,21 @@ export const Textfield = forwardRef<HTMLInputElement, TextfieldProps>(
       setValue(e.target.value)
     }
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (keyboardEvents(e).isComposing) return
+    }
+
     return (
       <input
         id={id}
-        type='text'
+        type={type}
         value={value}
         disabled={disabled}
         ref={ref}
-        onChange={handleChange}
+        onKeyDown={composeHandler(onKeyDownFromProps, handleKeyDown, {
+          originPreventDefault: true
+        })}
+        onChange={composeHandler(onChangeFromProps, handleChange)}
         {...restProps}
         className={textfieldStyle({ size, error })}
       />

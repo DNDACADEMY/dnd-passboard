@@ -17,3 +17,11 @@ export const title = style({
   fontWeight: vars.fontWeight.bold,
   color: vars.colors.white
 })
+
+export const tryAgainTextButtonBox = style({
+  position: 'relative',
+  zIndex: 1001,
+  marginTop: '24px',
+  display: 'flex',
+  justifyContent: 'center'
+})

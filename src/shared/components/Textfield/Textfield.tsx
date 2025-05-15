@@ -42,9 +42,7 @@ export const Textfield = forwardRef<HTMLInputElement, TextfieldProps>(
         value={value}
         disabled={disabled}
         ref={ref}
-        onKeyDown={composeHandler(onKeyDownFromProps, handleKeyDown, {
-          originPreventDefault: true
-        })}
+        onKeyDown={composeHandler(onKeyDownFromProps, handleKeyDown)}
         onChange={composeHandler(onChangeFromProps, handleChange)}
         {...restProps}
         className={textfieldStyle({ size, error })}

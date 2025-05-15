@@ -1,7 +1,5 @@
 'use client'
 
-import { StatusContainerContextProvider } from './context'
-import { useState } from 'react'
 import type { UserStatus } from '../../types/status'
 import { motion, AnimatePresence } from 'framer-motion'
 import * as styles from './style.css'
@@ -10,16 +8,13 @@ import { ResultCard } from './components/RerultCard'
 import './subset-font.css'
 import { If } from '@/shared/components/If'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
+import { useStatusContainerContext } from './context'
+
 export const StatusContainer = () => {
-  const [status, setStatus] = useState<UserStatus | null>(null)
-  const [name, setName] = useState<string>('')
+  const { status, name } = useStatusContainerContext('StatusContainer')
 
   return (
-    <StatusContainerContextProvider
-      status={status}
-      setStatus={setStatus}
-      name={name}
-      setName={setName}>
+    <>
       <If condition={status === 'waitlisted' || status === 'accepted'}>
         <DotLottieReact
           src='/assets/lottie/firecracker.lottie'
@@ -55,6 +50,6 @@ export const StatusContainer = () => {
           </If>
         </AnimatePresence>
       </motion.div>
-    </StatusContainerContextProvider>
+    </>
   )
 }

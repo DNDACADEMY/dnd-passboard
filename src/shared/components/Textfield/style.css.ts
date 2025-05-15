@@ -26,6 +26,19 @@ const baseStyle = style({
       backgroundColor: vars.colors.gray100,
       color: vars.colors.gray300,
       borderColor: vars.colors.gray300
+    },
+    '&:-webkit-autofill': {
+      boxShadow: `0 0 0 1000px ${vars.colors.mono000} inset`,
+      WebkitTextFillColor: vars.colors.black,
+      transition: 'background-color 5000s ease-in-out 0s'
+    },
+    '&:-webkit-autofill:focus': {
+      boxShadow: `0 0 0 1000px ${vars.colors.mono000} inset`,
+      WebkitTextFillColor: vars.colors.black
+    },
+    '&:-webkit-autofill:hover': {
+      boxShadow: `0 0 0 1000px ${vars.colors.mono000} inset`,
+      WebkitTextFillColor: vars.colors.black
     }
   }
 })

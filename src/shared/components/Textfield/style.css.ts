@@ -12,6 +12,8 @@ const baseStyle = style({
   borderStyle: 'solid',
   borderColor: vars.colors.gray300,
   lineHeight: '140%',
+  transition: 'border-color 0.2s ease-in-out',
+  outline: 'none',
   selectors: {
     '&::placeholder': {
       color: vars.colors.gray300

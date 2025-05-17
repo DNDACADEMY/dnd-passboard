@@ -1,8 +1,8 @@
 import { vars } from '@/shared/styles/theme.css'
 import { style } from '@vanilla-extract/css'
 export const container = style({
-  marginTop: '90px',
-  width: '100%'
+  minHeight: '100vh',
+  padding: '90px 0'
 })
 
 export const titleBox = style({

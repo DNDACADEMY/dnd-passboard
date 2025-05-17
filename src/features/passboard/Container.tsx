@@ -39,6 +39,7 @@ export function PassboardContainer({ recruitingEndDate }: Props) {
       <Flex
         direction='column'
         align='center'
+        justify='center'
         gap={24}
         asChild>
         <section className={container}>

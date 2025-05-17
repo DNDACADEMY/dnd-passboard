@@ -10,6 +10,8 @@ import { If } from '@/shared/components/If'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import { useStatusContainerContext } from './context'
 
+const firecracker = '/assets/lottie/firecracker.lottie'
+
 export const StatusContainer = () => {
   const { status, name } = useStatusContainerContext('StatusContainer')
 
@@ -17,12 +19,10 @@ export const StatusContainer = () => {
     <>
       <If condition={status === 'waitlisted' || status === 'accepted'}>
         <DotLottieReact
-          src='/assets/lottie/firecracker.lottie'
+          src={firecracker}
           autoplay
-          loop
           style={{
             width: '100vw',
-            height: '100vh',
             position: 'fixed',
             top: 0,
             left: 0,

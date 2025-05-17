@@ -4,12 +4,7 @@ import * as layers from './layers.css'
 import './reset.css'
 
 globalStyle('html, body', {
-  '@layer': {
-    [layers.utilities]: {
-      maxWidth: '100vw',
-      overflowX: 'hidden'
-    }
-  }
+  '@layer': {}
 })
 
 globalStyle('body', {

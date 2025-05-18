@@ -27,7 +27,7 @@ export const passboardHandlers = [
   http.post(`${MOCK_SERVER_URL}/event/:eventName/status/check`, ({ params }) => {
     const { eventName } = params
 
-    const status = 'NONE'
+    const status: ResCheckUserStatus['status'] = 'PASSED'
 
     const data: Omit<ResCheckUserStatus, 'eventName' | 'status'>[] = [
       {

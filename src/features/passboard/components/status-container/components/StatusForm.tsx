@@ -20,6 +20,7 @@ export const StatusForm = ({ eventName }: { eventName: string }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm<z.infer<typeof checkUserStatusSchema>>({
     resolver: zodResolver(checkUserStatusSchema)
@@ -47,7 +48,11 @@ export const StatusForm = ({ eventName }: { eventName: string }) => {
             await openAlert()
           } else {
             setStatus(res)
+            reset()
           }
+        },
+        onError: () => {
+          openAlert()
         }
       }
     )

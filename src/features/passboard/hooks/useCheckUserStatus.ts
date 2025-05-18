@@ -6,13 +6,16 @@ import {
   type ResCheckUserStatus
 } from '../apis/checkUserStatus'
 import { useMutation } from '@tanstack/react-query'
+import { type UseMutationCustomOptions } from '@/shared/types/common'
 
-export const useCheckUserStatus = () => {
-  return useMutation<
-    ResCheckUserStatus | null,
-    Error,
-    { eventName: string; req: ReqCheckUserStatusSchema }
-  >({
-    mutationFn: ({ eventName, req }) => checkUserStatus(eventName, req)
+type UseCheckUserStatusOptions = UseMutationCustomOptions<
+  ResCheckUserStatus | null,
+  { eventName: string; req: ReqCheckUserStatusSchema }
+>
+
+export const useCheckUserStatus = (mutationOptions?: UseCheckUserStatusOptions) => {
+  return useMutation({
+    mutationFn: ({ eventName, req }) => checkUserStatus(eventName, req),
+    ...mutationOptions
   })
 }

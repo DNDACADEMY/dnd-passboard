@@ -28,8 +28,6 @@ export const RecruitingPeriodCard = ({
     }
   }, [numberFromProps])
 
-  if (number == null) return null
-
   return (
     <div className={styles.container}>
       <Image
@@ -45,7 +43,9 @@ export const RecruitingPeriodCard = ({
         gap={12}
         className={styles.content}>
         <div className={styles.date}>{`발표 D${getRecruitingEndDate(recruitingEndDate)}`}</div>
-        <div className={styles.description}>{recruitingCardContent[number]}</div>
+        <div className={styles.description}>
+          {recruitingCardContent[number as RecruitingCardType]}
+        </div>
       </Flex>
     </div>
   )

@@ -1,14 +1,12 @@
+'use client'
+
 import { Flex } from '@/shared/components/Flex'
 import { type UserStatus } from '../../../types/status'
 import Image from 'next/image'
 import { type ReactNode } from 'react'
 import { CARDINAL_NUMBER } from '@/shared/constants'
 import * as styles from '../style.css'
-import { motion } from 'framer-motion'
-type ResultCardProps = {
-  status: UserStatus
-  name: string
-}
+import { useStatusContainerContext } from '../../../context'
 
 type Content = {
   imageUrl: string
@@ -25,25 +23,46 @@ const resultContentMap: Record<UserStatus, Content> = {
   PASSED: {
     imageUrl: '/assets/images/passboard/result-accepted.png',
     title: '합격',
-    description: `축하드립니다.
-    앞으로 잘 부탁드려요.`
+    description: (
+      <>
+        축하드립니다.
+        <br />
+        앞으로 잘 부탁드려요.
+      </>
+    )
   },
   FAILED: {
     imageUrl: '/assets/images/passboard/result-failed.png',
     title: '불합격',
-    description: `합격하지 못해 아쉽지만,
-    진심으로 응원할게요.`
+    description: (
+      <>
+        합격하지 못해 아쉽지만,
+        <br />
+        진심으로 응원할게요.
+      </>
+    )
   },
   WAITLISTED: {
     imageUrl: '/assets/images/passboard/result-waitlist.png',
     title: '예비 합격',
-    description: `잠시만요!
-    예비후보자로 등록되었어요.`
+    description: (
+      <>
+        잠시만요!
+        <br />
+        예비후보자로 등록되었어요.
+      </>
+    )
   }
 }
 
-export const ResultCard = ({ status, name }: ResultCardProps) => {
-  const content = resultContentMap[status]
+export const ResultCard = () => {
+  const { status } = useStatusContainerContext('ResultCard')
+
+  if (status == null) {
+    return null
+  }
+
+  const content = resultContentMap[status.status]
 
   return (
     <Flex
@@ -51,10 +70,7 @@ export const ResultCard = ({ status, name }: ResultCardProps) => {
       direction='column'
       gap={20}
       asChild>
-      <motion.div
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}>
+      <div>
         <Image
           className={styles.cardImage}
           src={content.imageUrl}
@@ -67,7 +83,7 @@ export const ResultCard = ({ status, name }: ResultCardProps) => {
           direction='column'
           gap={4}>
           <p className={styles.cardinalNumber}>{CARDINAL_NUMBER}기 지원 결과</p>
-          <h3 className={styles.cardName}>{name}</h3>
+          <h3 className={styles.cardName}>{status.name}</h3>
           <h4 className={styles.cardTitle}>{content.title}</h4>
         </Flex>
         <Flex
@@ -78,7 +94,7 @@ export const ResultCard = ({ status, name }: ResultCardProps) => {
             자세한 사항은 지원하신 <strong>이메일</strong>로 안내드렸어요.
           </p>
         </Flex>
-      </motion.div>
+      </div>
     </Flex>
   )
 }

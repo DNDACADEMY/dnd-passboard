@@ -7,11 +7,14 @@ import { useForm } from 'react-hook-form'
 import { checkUserStatusSchema } from '../../../apis/checkUserStatus'
 import { zodResolver } from '@hookform/resolvers/zod'
 import type { z } from 'zod'
-import { useTransition, useState } from 'react'
-import { motion } from 'framer-motion'
 import { useCheckUserStatus } from '../../../hooks/useCheckUserStatus'
+import { useStatusContainerContext } from '../../../context'
 
-export const StatusForm = ({ eventName, isClosed }: { eventName: string; isClosed: boolean }) => {
+export type StatusFormProps = {
+  eventName: string
+}
+
+export const StatusForm = ({ eventName }: { eventName: string }) => {
   const {
     register,
     handleSubmit,
@@ -20,34 +23,27 @@ export const StatusForm = ({ eventName, isClosed }: { eventName: string; isClose
     resolver: zodResolver(checkUserStatusSchema)
   })
 
-  const [isPending, startTransition] = useTransition()
-  const { mutate: checkUserStatus } = useCheckUserStatus()
-  const [isUnmounted, setIsUnmounted] = useState(false)
+  const { mutate: checkUserStatus, isPending: isChecking } = useCheckUserStatus()
+  const { setStatus } = useStatusContainerContext('StatusForm')
 
   const onSubmit = handleSubmit(async (data) => {
-    startTransition(async () => {
-      checkUserStatus({ eventName, req: data })
-    })
+    checkUserStatus(
+      { eventName, req: data },
+      {
+        onSuccess: async (res) => {
+          await setStatus(res)
+        }
+      }
+    )
   })
 
-  if (isUnmounted) return null
-
+  const isDisabled = !!errors.name?.message || !!errors.email?.message || isChecking
   return (
     <Flex
       direction='column'
       gap={32}
       asChild>
-      <motion.form
-        onSubmit={onSubmit}
-        initial={{ opacity: 0, height: 0, y: 100 }}
-        animate={
-          isClosed ? { opacity: 0, y: -120, height: 0 } : { opacity: 1, y: 0, height: 'auto' }
-        }
-        exit={{ opacity: 0, y: -120, height: 0 }}
-        transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
-        onAnimationComplete={() => {
-          if (isClosed) setIsUnmounted(true)
-        }}>
+      <form onSubmit={onSubmit}>
         <StatusField
           label='이름'
           placeholder='이름을 입력해주세요.'
@@ -63,10 +59,10 @@ export const StatusForm = ({ eventName, isClosed }: { eventName: string; isClose
         <Button
           size='xlarge'
           type='submit'
-          disabled={!!errors.name?.message || !!errors.email?.message || isPending}>
+          disabled={isDisabled}>
           결과 확인하기
         </Button>
-      </motion.form>
+      </form>
     </Flex>
   )
 }

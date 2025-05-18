@@ -6,7 +6,7 @@ import { type ResCheckUserStatus } from '@/features/passboard/apis/checkUserStat
 export const passboardHandlers = [
   http.get(`${MOCK_SERVER_URL}/event`, () => {
     const eventStartDate = '2025-05-14'
-    const eventEndDate = '2025-06-14'
+    const eventEndDate = '2025-05-14'
 
     const data: Omit<ResCheckEvent, 'eventStartDate' | 'eventEndDate'>[] = [
       {

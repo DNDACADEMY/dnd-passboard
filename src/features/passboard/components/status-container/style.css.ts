@@ -5,7 +5,7 @@ export const container = style({
   width: '100%',
   maxWidth: '340px',
   padding: vars.spacing['150'],
-  borderRadius: vars.spacing['050'],
+  borderRadius: vars.spacing['125'],
   backgroundColor: vars.colors.white,
   overflow: 'hidden'
 })

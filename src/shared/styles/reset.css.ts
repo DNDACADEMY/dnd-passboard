@@ -69,6 +69,15 @@ globalStyle('textarea', {
   }
 })
 
+globalStyle('hr', {
+  '@layer': {
+    [layers.reset]: {
+      border: 'none',
+      margin: '0'
+    }
+  }
+})
+
 globalStyle('meter', {
   '@layer': {
     [layers.reset]: {

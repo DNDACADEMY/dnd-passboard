@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import '@/shared/styles/globals.css'
 import { pretendard } from '@/shared/styles/fonts/pretendard'
-import { QueryProvider } from '@/shared/providers/QureyClient'
 import { ChannelIo } from '@/shared/components/common/ChannelIo'
 
 export const metadata: Metadata = {
@@ -33,11 +32,8 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <QueryProvider>
-          <ChannelIo />
-          {children}
-          <div id='overlay' />
-        </QueryProvider>
+        <ChannelIo />
+        {children}
       </body>
     </html>
   )

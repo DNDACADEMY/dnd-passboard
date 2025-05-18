@@ -3569,6 +3569,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@toss/use-overlay@npm:^1.4.2":
+  version: 1.4.2
+  resolution: "@toss/use-overlay@npm:1.4.2"
+  peerDependencies:
+    react: ^16.8 || ^17 || ^18
+  checksum: 10c0/3e0621d403e88e6f3b013177729972da3460a02c7effe08aff5fcb94a86354220690fdf72dca768b3ef0d9330658632404820f5d3ac3dcc5e34824cf77007e3e
+  languageName: node
+  linkType: hard
+
 "@trysound/sax@npm:0.2.0":
   version: 0.2.0
   resolution: "@trysound/sax@npm:0.2.0"
@@ -5622,6 +5631,7 @@ __metadata:
     "@tanstack/react-query-devtools": "npm:^5.76.1"
     "@testing-library/jest-dom": "npm:^6.6.3"
     "@testing-library/react": "npm:^16.3.0"
+    "@toss/use-overlay": "npm:^1.4.2"
     "@types/cors": "npm:^2"
     "@types/express": "npm:^5"
     "@types/node": "npm:^20"

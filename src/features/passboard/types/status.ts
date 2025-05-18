@@ -1,3 +1,3 @@
-export type ProgramStatus = 'recruiting' | 'inactive' | 'result_announced'
+export type ProgramStatus = 'RECRUITING' | 'INACTIVE' | 'RESULT_ANNOUNCED'
 
-export type UserStatus = 'accepted' | 'rejected' | 'waitlisted'
+export type UserStatus = 'NONE' | 'PASSED' | 'FAILED' | 'WAITLISTED'

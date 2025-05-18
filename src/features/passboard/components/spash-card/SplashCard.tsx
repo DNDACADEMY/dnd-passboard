@@ -9,20 +9,15 @@ import { useState, useEffect } from 'react'
 import { Flex } from '@/shared/components/Flex'
 import { motion } from 'framer-motion'
 
-type Props = {
+export type SplashCardProps = {
   /**
    * @description 모집 종료일
    */
   recruitingEndDate: string | Date
   number?: RecruitingCardType
-  isClosing?: boolean
 }
 
-export const SplashCard = ({
-  recruitingEndDate,
-  number: numberFromProps,
-  isClosing = false
-}: Props) => {
+export const SplashCard = ({ recruitingEndDate, number: numberFromProps }: SplashCardProps) => {
   const [number, setNumber] = useState<RecruitingCardType | undefined>(numberFromProps)
 
   useEffect(() => {
@@ -34,11 +29,7 @@ export const SplashCard = ({
   if (number == null) return null
 
   return (
-    <motion.div
-      className={styles.container}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: isClosing ? 0 : 1 }}
-      transition={{ duration: 0.5 }}>
+    <motion.div className={styles.container}>
       <Image
         src={`/assets/images/passboard/recruiting-card-${number}.png`}
         alt='recruiting card'

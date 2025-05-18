@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import '@/shared/styles/globals.css'
 import { pretendard } from '@/shared/styles/fonts/pretendard'
-import { ChannelIo } from '@/shared/components/ChannelIo/ChannelIo'
+import { QueryProvider } from '@/shared/providers/QureyClient'
+import { ChannelIo } from '@/shared/components/common/ChannelIo'
 
 export const metadata: Metadata = {
   title: 'DND - 지원결과조회',
@@ -32,9 +33,11 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <ChannelIo />
-        {children}
-        <div id='overlay' />
+        <QueryProvider>
+          <ChannelIo />
+          {children}
+          <div id='overlay' />
+        </QueryProvider>
       </body>
     </html>
   )

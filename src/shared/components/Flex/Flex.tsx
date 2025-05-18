@@ -9,6 +9,7 @@ export type FlexProps = FlexRecipeProps &
   CommonProps & {
     gap?: number
     asChild?: boolean
+    as?: 'section' | 'div'
   }
 
 export const Flex = (props: FlexProps) => {
@@ -18,13 +19,14 @@ export const Flex = (props: FlexProps) => {
     justify,
     wrap,
     asChild,
+    as,
     gap,
     children,
     className: classNameFromProps,
     style: styleFromProps,
     ...restProps
   } = props
-  const Component = asChild ? Slot : 'div'
+  const Component = asChild ? Slot : (as ?? 'div')
   return (
     <Component
       style={{ gap: gap ? getGapSizeFromNumber(gap) : undefined, ...styleFromProps }}

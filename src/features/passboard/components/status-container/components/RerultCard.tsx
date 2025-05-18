@@ -17,19 +17,24 @@ type Content = {
 }
 
 const resultContentMap: Record<UserStatus, Content> = {
-  accepted: {
+  NONE: {
+    imageUrl: '',
+    title: '',
+    description: ''
+  },
+  PASSED: {
     imageUrl: '/assets/images/passboard/result-accepted.png',
     title: '합격',
     description: `축하드립니다.
     앞으로 잘 부탁드려요.`
   },
-  rejected: {
+  FAILED: {
     imageUrl: '/assets/images/passboard/result-failed.png',
     title: '불합격',
     description: `합격하지 못해 아쉽지만,
     진심으로 응원할게요.`
   },
-  waitlisted: {
+  WAITLISTED: {
     imageUrl: '/assets/images/passboard/result-waitlist.png',
     title: '예비 합격',
     description: `잠시만요!

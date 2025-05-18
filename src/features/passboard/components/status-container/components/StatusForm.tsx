@@ -4,31 +4,29 @@ import { Inputfield } from '@/shared/components/Inputfield'
 import { Button } from '@/shared/components/Button'
 import { Flex } from '@/shared/components/Flex'
 import { useForm } from 'react-hook-form'
-import { joinMyApplyStatus, joinMyApplyStatusSchema } from '../../../apis/joinMyStatus'
+import { checkUserStatusSchema } from '../../../apis/checkUserStatus'
 import { zodResolver } from '@hookform/resolvers/zod'
 import type { z } from 'zod'
 import { useTransition, useState } from 'react'
-import { useStatusContainerContext } from '../context'
 import { motion } from 'framer-motion'
+import { useCheckUserStatus } from '../../../hooks/useCheckUserStatus'
 
 export const StatusForm = ({ isClosed }: { isClosed: boolean }) => {
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<z.infer<typeof joinMyApplyStatusSchema>>({
-    resolver: zodResolver(joinMyApplyStatusSchema)
+  } = useForm<z.infer<typeof checkUserStatusSchema>>({
+    resolver: zodResolver(checkUserStatusSchema)
   })
 
   const [isPending, startTransition] = useTransition()
-  const { setStatus, setName } = useStatusContainerContext('StatusForm')
+  const { mutate: checkUserStatus } = useCheckUserStatus()
   const [isUnmounted, setIsUnmounted] = useState(false)
 
   const onSubmit = handleSubmit(async (data) => {
     startTransition(async () => {
-      const res = await joinMyApplyStatus(data)
-      setName(data.name)
-      setStatus(res.status)
+      checkUserStatus(data)
     })
   })
 

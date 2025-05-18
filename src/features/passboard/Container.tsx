@@ -11,10 +11,10 @@ import { SwitchCase } from '@/shared/components/SwichCase'
 import { StatusContainer } from './components/status-container'
 import { type UserStatus } from './types/status'
 import { useState } from 'react'
-import { StatusContainerContextProvider } from './components/status-container/context'
 import { If } from '@/shared/components/If'
 import { RightArrow } from '@/shared/libs/assets/icon'
 import { TextButton } from '@/shared/components/TextButton'
+import { StatusContainerContextProvider } from './context'
 type Props = {
   recruitingEndDate: string | Date
 }

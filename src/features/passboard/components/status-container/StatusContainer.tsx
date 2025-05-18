@@ -8,8 +8,7 @@ import { ResultCard } from './components/RerultCard'
 import './subset-font.css'
 import { If } from '@/shared/components/If'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
-import { useStatusContainerContext } from './context'
-
+import { useStatusContainerContext } from '../../context'
 const firecracker = '/assets/lottie/firecracker.lottie'
 
 export const StatusContainer = () => {

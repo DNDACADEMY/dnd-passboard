@@ -36,9 +36,9 @@ const resultContentMap: Record<UserStatus, Content> = {
     title: '불합격',
     description: (
       <>
-        합격하지 못해 아쉽지만,
+        지원해주셔서 진심으로 감사합니다.
         <br />
-        진심으로 응원할게요.
+        이번엔 함께하지 못했지만, 다음 기회에 뵙기를 바랍니다.
       </>
     )
   },

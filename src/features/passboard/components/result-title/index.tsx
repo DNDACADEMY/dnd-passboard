@@ -1,0 +1,1 @@
+export { ResultTitle } from './ResultTitle'

@@ -9,6 +9,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import type { z } from 'zod'
 import { useCheckUserStatus } from '../../../hooks/useCheckUserStatus'
 import { useStatusContainerContext } from '../../../context'
+import { useOverlay } from '@toss/use-overlay'
+import { Alert } from '@/shared/components/Alert'
 
 export type StatusFormProps = {
   eventName: string
@@ -25,13 +27,27 @@ export const StatusForm = ({ eventName }: { eventName: string }) => {
 
   const { mutate: checkUserStatus, isPending: isChecking } = useCheckUserStatus()
   const { setStatus } = useStatusContainerContext('StatusForm')
+  const overlay = useOverlay()
+
+  const openAlert = () => {
+    return overlay.open(({ isOpen, close }) => (
+      <NotFoundAlert
+        isOpen={isOpen}
+        close={close}
+      />
+    ))
+  }
 
   const onSubmit = handleSubmit(async (data) => {
     checkUserStatus(
       { eventName, req: data },
       {
         onSuccess: async (res) => {
-          await setStatus(res)
+          if (res.status === 'NONE') {
+            await openAlert()
+          } else {
+            setStatus(res)
+          }
         }
       }
     )
@@ -82,5 +98,28 @@ const StatusField = (props: StatusFieldProps) => {
       bottomAddon={error && <Inputfield.BottomText state='error'>{error}</Inputfield.BottomText>}
       {...restProps}
     />
+  )
+}
+
+type NotFoundAlertProps = {
+  isOpen: boolean
+  close: () => void
+}
+
+const NotFoundAlert = ({ isOpen, close }: NotFoundAlertProps) => {
+  return (
+    <Alert
+      isOpen={isOpen}
+      onClose={close}>
+      <Alert.Backdrop />
+      <Alert.Content bottomAddon={<Alert.Button type='button'>닫기</Alert.Button>}>
+        <Alert.Title>
+          입력하신 정보를
+          <br /> 찾을 수 없습니다.
+        </Alert.Title>
+        <Alert.Description>이름과 이메일을 다시 확인해주세요.</Alert.Description>
+        <Alert.SubDescription>지속 된 문제 발생시 채널톡으로 문의주세요.</Alert.SubDescription>
+      </Alert.Content>
+    </Alert>
   )
 }

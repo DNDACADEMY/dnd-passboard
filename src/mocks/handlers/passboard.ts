@@ -26,18 +26,20 @@ export const passboardHandlers = [
   }),
   http.post(`${MOCK_SERVER_URL}/event/:eventName/status/check`, ({ params }) => {
     const { eventName } = params
-    const data: Omit<ResCheckUserStatus, 'eventName'>[] = [
+
+    const status = 'NONE'
+
+    const data: Omit<ResCheckUserStatus, 'eventName' | 'status'>[] = [
       {
-        name: 'John Doe',
-        status: 'PASSED'
+        name: 'John Doe'
       },
       {
-        name: 'Jane Doe',
-        status: 'FAILED'
+        name: 'Jane Doe'
       }
     ]
     return HttpResponse.json({
       eventName,
+      status,
       ...data[Math.floor(Math.random() * data.length)]
     })
   })

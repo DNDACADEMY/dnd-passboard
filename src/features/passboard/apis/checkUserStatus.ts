@@ -9,16 +9,21 @@ export const checkUserStatusSchema = z.object({
 
 export type ReqCheckUserStatusSchema = z.infer<typeof checkUserStatusSchema>
 
-export type ResqMyApplyStatus = {
+export type ResCheckUserStatus = {
+  eventName: string
   name: string
   status: UserStatus
 }
 
 export const checkUserStatus = async (
+  eventName: string,
   req: ReqCheckUserStatusSchema
-): Promise<ResqMyApplyStatus> => {
-  const res = await fetchWrapper<ResqMyApplyStatus>(`/status?name=${req.name}&email=${req.email}`, {
-    method: 'POST'
-  })
+): Promise<ResCheckUserStatus> => {
+  const res = await fetchWrapper<ResCheckUserStatus>(
+    `/event/${eventName}/status/check?name=${req.name}&email=${req.email}`,
+    {
+      method: 'POST'
+    }
+  )
   return res
 }

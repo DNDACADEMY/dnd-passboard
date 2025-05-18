@@ -1,26 +1,44 @@
 import { http, HttpResponse } from 'msw'
 import { MOCK_SERVER_URL } from '@/shared/constants'
-import { type ResqMyApplyStatus } from '@/features/passboard/apis/joinMyStatus'
+import { type ResCheckEvent } from '@/features/passboard/apis/checkEvent'
+import { type ResCheckUserStatus } from '@/features/passboard/apis/checkUserStatus'
 
 export const passboardHandlers = [
-  http.get(`${MOCK_SERVER_URL}/status`, () => {
-    const data: ResqMyApplyStatus[] = [
+  http.get(`${MOCK_SERVER_URL}/event`, () => {
+    const eventStartDate = '2025-05-14'
+    const eventEndDate = '2025-06-14'
+
+    const data: Omit<ResCheckEvent, 'eventStartDate' | 'eventEndDate'>[] = [
+      {
+        eventName: 'DND 13기 모집',
+        eventId: '1234567890'
+      },
+      {
+        eventName: 'DND 해커톤 모집',
+        eventId: '1234567890'
+      }
+    ]
+    return HttpResponse.json({
+      ...data[Math.floor(Math.random() * data.length)],
+      eventStartDate,
+      eventEndDate
+    })
+  }),
+  http.post(`${MOCK_SERVER_URL}/event/:eventName/status/check`, ({ params }) => {
+    const { eventName } = params
+    const data: Omit<ResCheckUserStatus, 'eventName'>[] = [
       {
         name: 'John Doe',
-        email: 'john.doe@example.com',
-        status: 'accepted'
+        status: 'PASSED'
       },
       {
         name: 'Jane Doe',
-        email: 'jane.doe@example.com',
-        status: 'rejected'
-      },
-      {
-        name: 'Jim Doe',
-        email: 'jim.doe@example.com',
-        status: 'waitlisted'
+        status: 'FAILED'
       }
     ]
-    return HttpResponse.json(data[Math.floor(Math.random() * data.length)])
+    return HttpResponse.json({
+      eventName,
+      ...data[Math.floor(Math.random() * data.length)]
+    })
   })
 ]

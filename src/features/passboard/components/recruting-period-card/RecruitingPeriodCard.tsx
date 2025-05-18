@@ -7,9 +7,8 @@ import { type RecruitingCardType } from './type'
 import * as styles from './style.css'
 import { useState, useEffect } from 'react'
 import { Flex } from '@/shared/components/Flex'
-import { motion } from 'framer-motion'
 
-export type SplashCardProps = {
+export type RecruitingPeriodCardProps = {
   /**
    * @description 모집 종료일
    */
@@ -17,7 +16,10 @@ export type SplashCardProps = {
   number?: RecruitingCardType
 }
 
-export const SplashCard = ({ recruitingEndDate, number: numberFromProps }: SplashCardProps) => {
+export const RecruitingPeriodCard = ({
+  recruitingEndDate,
+  number: numberFromProps
+}: RecruitingPeriodCardProps) => {
   const [number, setNumber] = useState<RecruitingCardType | undefined>(numberFromProps)
 
   useEffect(() => {
@@ -29,13 +31,12 @@ export const SplashCard = ({ recruitingEndDate, number: numberFromProps }: Splas
   if (number == null) return null
 
   return (
-    <motion.div className={styles.container}>
+    <div className={styles.container}>
       <Image
         src={`/assets/images/passboard/recruiting-card-${number}.png`}
         alt='recruiting card'
         width={340}
         height={292}
-        style={{ objectFit: 'contain' }}
       />
       <Flex
         justify='center'
@@ -43,9 +44,9 @@ export const SplashCard = ({ recruitingEndDate, number: numberFromProps }: Splas
         align='center'
         gap={12}
         className={styles.content}>
-        <div className={styles.date}>{`발표 D-${getRecruitingEndDate(recruitingEndDate)}`}</div>
+        <div className={styles.date}>{`발표 D${getRecruitingEndDate(recruitingEndDate)}`}</div>
         <div className={styles.description}>{recruitingCardContent[number]}</div>
       </Flex>
-    </motion.div>
+    </div>
   )
 }

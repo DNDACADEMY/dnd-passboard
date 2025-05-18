@@ -1,7 +1,13 @@
 import { PassboardContainer } from '@/features/passboard'
+import { checkEvent } from '@/features/passboard/apis/checkEvent'
 
 export default async function Page() {
-  const recruitingEndDate = new Date('2025-05-14')
+  const { eventName, eventEndDate } = await checkEvent()
 
-  return <PassboardContainer recruitingEndDate={recruitingEndDate} />
+  return (
+    <PassboardContainer
+      recruitingEndDate={eventEndDate}
+      eventName={eventName}
+    />
+  )
 }

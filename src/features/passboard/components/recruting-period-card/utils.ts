@@ -7,7 +7,7 @@ export const getRecruitingEndDate = (recruitingEndDate: string | Date) => {
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
 
   if (diffDays > 0) {
-    return diffDays
+    return `-${diffDays}`
   } else if (diffDays === 0) {
     return 'Day'
   } else {

@@ -11,7 +11,7 @@ import { useTransition, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useCheckUserStatus } from '../../../hooks/useCheckUserStatus'
 
-export const StatusForm = ({ isClosed }: { isClosed: boolean }) => {
+export const StatusForm = ({ eventName, isClosed }: { eventName: string; isClosed: boolean }) => {
   const {
     register,
     handleSubmit,
@@ -26,7 +26,7 @@ export const StatusForm = ({ isClosed }: { isClosed: boolean }) => {
 
   const onSubmit = handleSubmit(async (data) => {
     startTransition(async () => {
-      checkUserStatus(data)
+      checkUserStatus({ eventName, req: data })
     })
   })
 

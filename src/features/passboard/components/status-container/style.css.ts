@@ -5,15 +5,9 @@ export const container = style({
   width: '100%',
   maxWidth: '340px',
   padding: vars.spacing['150'],
-  borderRadius: vars.spacing['125'],
+  borderRadius: vars.spacing['050'],
   backgroundColor: vars.colors.white,
-  overflow: 'hidden',
-  transition: 'border-radius 0.2s ease-in-out',
-  selectors: {
-    '&:has(input)': {
-      borderRadius: vars.spacing['050']
-    }
-  }
+  overflow: 'hidden'
 })
 
 export const cardImage = style({

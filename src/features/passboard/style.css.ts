@@ -1,5 +1,6 @@
 import { vars } from '@/shared/styles/theme.css'
 import { style } from '@vanilla-extract/css'
+
 export const container = style({
   minHeight: '100vh',
   padding: '90px 0'

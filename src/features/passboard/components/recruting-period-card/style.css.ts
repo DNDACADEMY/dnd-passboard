@@ -2,6 +2,8 @@ import { vars } from '@/shared/styles/theme.css'
 import { style } from '@vanilla-extract/css'
 
 export const container = style({
+  width: '100%',
+  maxWidth: '340px',
   borderRadius: vars.spacing[125],
   overflow: 'hidden',
   backgroundColor: vars.colors.white

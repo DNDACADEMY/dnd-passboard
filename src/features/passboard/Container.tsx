@@ -2,7 +2,7 @@
 
 import { container } from './style.css'
 import { Flex } from '@/shared/components/Flex'
-import { SplashCard } from './components/spash-card'
+import { RecruitingPeriodCard } from './components/recruting-period-card'
 import Link from 'next/link'
 import Image from 'next/image'
 import * as styles from './style.css'
@@ -12,19 +12,27 @@ import { If } from '@/shared/components/If'
 import { RightArrow } from '@/shared/libs/assets/icon'
 import { TextButton } from '@/shared/components/TextButton'
 import { useCheckUserStatus } from './hooks/useCheckUserStatus'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 
 type Props = {
   recruitingEndDate: string | Date
+  eventName: string
 }
 
 const DND_ACTIVE_PATH = 'https://dnd.ac/'
 
-export function PassboardContainer({ recruitingEndDate }: Props) {
+const firecracker = '/assets/lottie/firecracker.lottie'
+
+export function PassboardContainer({ recruitingEndDate, eventName }: Props) {
   const { data: userStatus, reset } = useCheckUserStatus()
 
   const handleTryAgain = () => {
     reset()
   }
+
+  const showFirecracker = userStatus?.status === 'WAITLISTED' || userStatus?.status === 'PASSED'
+  // NOTE: 모집 기간이 아닐 경우 모집 기간중에 보여줄 카드를 보여줌
+  const isRecruitingPeriod = recruitingEndDate > new Date()
 
   return (
     <Flex
@@ -50,16 +58,22 @@ export function PassboardContainer({ recruitingEndDate }: Props) {
           <h4 className={styles.title}>결과 조회</h4>
         </div>
       </Flex>
-
+      <If condition={showFirecracker}>
+        <DotLottieReact
+          src={firecracker}
+          autoplay
+          style={{ width: '100vw', position: 'fixed', top: 0, left: 0, zIndex: 1000 }}
+        />
+      </If>
       <SwitchCase
-        value={userStatus === null}
+        value={isRecruitingPeriod}
         cases={{
-          true: <SplashCard recruitingEndDate={recruitingEndDate} />,
-          false: <StatusContainer />
+          true: <StatusContainer eventName={eventName} />,
+          false: <RecruitingPeriodCard recruitingEndDate={recruitingEndDate} />
         }}
         defaultComponent={null}
       />
-      <If condition={userStatus !== null}>
+      <If condition={userStatus != null}>
         <div className={styles.tryAgainTextButtonBox}>
           <TextButton
             onClick={handleTryAgain}

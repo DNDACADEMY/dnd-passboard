@@ -7,12 +7,14 @@ import { type Dispatch, type SetStateAction } from 'react'
 type StatusContainerContextValue = {
   status: ResCheckUserStatus | null
   setStatus: Dispatch<SetStateAction<ResCheckUserStatus | null>>
+  eventName: string
 }
 
 const [StatusContainerContextProvider, useStatusContainerContext] =
   createCtxProvider<StatusContainerContextValue>('StatusContainer', {
     status: null,
-    setStatus: () => {}
+    setStatus: () => {},
+    eventName: ''
   })
 
 export { StatusContainerContextProvider, useStatusContainerContext }

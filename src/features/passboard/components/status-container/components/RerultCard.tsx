@@ -4,7 +4,6 @@ import { Flex } from '@/shared/components/Flex'
 import { type UserStatus } from '../../../types/status'
 import Image from 'next/image'
 import { type ReactNode } from 'react'
-import { CARDINAL_NUMBER } from '@/shared/constants'
 import * as styles from '../style.css'
 import { useStatusContainerContext } from '../../../context'
 
@@ -56,7 +55,7 @@ const resultContentMap: Record<UserStatus, Content> = {
 }
 
 export const ResultCard = () => {
-  const { status } = useStatusContainerContext('ResultCard')
+  const { status, eventName } = useStatusContainerContext('ResultCard')
 
   if (status == null) {
     return null
@@ -82,7 +81,7 @@ export const ResultCard = () => {
           align='center'
           direction='column'
           gap={4}>
-          <p className={styles.cardinalNumber}>{CARDINAL_NUMBER}기 지원 결과</p>
+          <p className={styles.cardinalNumber}>{eventName} 지원 결과</p>
           <h3 className={styles.cardName}>{status.name}</h3>
           <h4 className={styles.cardTitle}>{content.title}</h4>
         </Flex>

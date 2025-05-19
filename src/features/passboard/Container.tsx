@@ -25,7 +25,8 @@ export function PassboardContainer({ recruitingEndDate, eventName }: Props) {
   return (
     <StatusContainerContextProvider
       status={status}
-      setStatus={setStatus}>
+      setStatus={setStatus}
+      eventName={eventName}>
       <Flex
         as='section'
         direction='column'

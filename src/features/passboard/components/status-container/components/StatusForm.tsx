@@ -11,6 +11,7 @@ import { useCheckUserStatus } from '../../../hooks/useCheckUserStatus'
 import { useStatusContainerContext } from '../../../context'
 import { useOverlay } from '@toss/use-overlay'
 import { Alert } from '@/shared/components/Alert'
+import { sendGTMEvent } from '@next/third-parties/google'
 
 export type StatusFormProps = {
   eventName: string
@@ -40,6 +41,14 @@ export const StatusForm = ({ eventName }: { eventName: string }) => {
   }
 
   const onSubmit = handleSubmit(async (data) => {
+    sendGTMEvent(
+      {
+        eventName,
+        name: data.name,
+        email: data.email
+      },
+      '지원 결과 조회'
+    )
     checkUserStatus(
       { eventName, req: data },
       {

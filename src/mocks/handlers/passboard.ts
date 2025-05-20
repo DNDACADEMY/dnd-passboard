@@ -1,7 +1,10 @@
 import { http, HttpResponse } from 'msw'
 import { MOCK_SERVER_URL } from '@/shared/constants'
 import { type ResCheckEvent } from '@/features/passboard/apis/checkEvent'
-import { type ResCheckUserStatus } from '@/features/passboard/apis/checkUserStatus'
+import {
+  type ResCheckUserStatus,
+  type ReqCheckUserStatusSchema
+} from '@/features/passboard/apis/checkUserStatus'
 
 export const passboardHandlers = [
   http.get(`${MOCK_SERVER_URL}/event`, () => {
@@ -24,23 +27,16 @@ export const passboardHandlers = [
       eventEndDate
     })
   }),
-  http.post(`${MOCK_SERVER_URL}/event/:eventName/status/check`, ({ params }) => {
+  http.post(`${MOCK_SERVER_URL}/event/:eventName/status/check`, async ({ request, params }) => {
     const { eventName } = params
+    const body = (await request.json()) as ReqCheckUserStatusSchema
 
     const status: ResCheckUserStatus['status'] = 'PASSED'
 
-    const data: Omit<ResCheckUserStatus, 'eventName' | 'status'>[] = [
-      {
-        name: 'John Doe'
-      },
-      {
-        name: 'Jane Doe'
-      }
-    ]
     return HttpResponse.json({
       eventName,
       status,
-      ...data[Math.floor(Math.random() * data.length)]
+      ...body
     })
   })
 ]

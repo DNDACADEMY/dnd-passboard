@@ -19,11 +19,9 @@ export const checkUserStatus = async (
   eventName: string,
   req: ReqCheckUserStatusSchema
 ): Promise<ResCheckUserStatus> => {
-  const res = await fetchWrapper<ResCheckUserStatus>(
-    `/event/${eventName}/status/check?name=${req.name}&email=${req.email}`,
-    {
-      method: 'POST'
-    }
-  )
+  const res = await fetchWrapper<ResCheckUserStatus>(`/event/${eventName}/status/check`, {
+    method: 'POST',
+    body: JSON.stringify(req)
+  })
   return res
 }

@@ -81,9 +81,21 @@ export const ResultCard = () => {
           align='center'
           direction='column'
           gap={4}>
-          <p className={styles.cardinalNumber}>{eventName} 지원 결과</p>
-          <h3 className={styles.cardName}>{status.name}</h3>
-          <h4 className={styles.cardTitle}>{content.title}</h4>
+          <p
+            aria-label={`${eventName} 지원 결과`}
+            className={styles.cardinalNumber}>
+            {eventName} 지원 결과
+          </p>
+          <h3
+            aria-label={status.name}
+            className={styles.cardName}>
+            {status.name}
+          </h3>
+          <h4
+            aria-label={content.title}
+            className={styles.cardTitle}>
+            {content.title}
+          </h4>
         </Flex>
         <Flex
           align='center'

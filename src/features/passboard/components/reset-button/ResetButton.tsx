@@ -20,6 +20,7 @@ export const ResetButton = () => {
     <If condition={showResetButton}>
       <div className={styles.tryAgainTextButtonBox}>
         <TextButton
+          aria-label='다시 시도하기'
           onClick={handleTryAgain}
           rightAddon={<RightArrow />}>
           다시 시도하기

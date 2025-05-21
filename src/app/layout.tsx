@@ -1,13 +1,8 @@
-import type { Metadata } from 'next'
 import '@/shared/styles/globals.css'
 import { pretendard } from '@/shared/styles/fonts/pretendard'
 import { ChannelIo } from '@/shared/components/common/ChannelIo'
 import { GoogleTagManager } from '@next/third-parties/google'
 import { GOOGLE_TAG_MANAGER_ID } from '@/shared/constants'
-export const metadata: Metadata = {
-  title: 'DND - 지원결과조회',
-  description: 'DND 지원결과조회 페이지입니다.'
-}
 
 export default function RootLayout({
   children
